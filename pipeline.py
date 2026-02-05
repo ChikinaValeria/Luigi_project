@@ -3,15 +3,11 @@ import pandas as pd
 import json
 import os
 
-# Папка для промежуточных и итоговых файлов
 DATA_DIR = "data"
 OUTPUT_DIR = "output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# -----------------------------
-# Шаг 3: Загрузка данных
-# -----------------------------
-
+# Task 1 - loading of sales
 class LoadSales(luigi.Task):
     input_file = luigi.Parameter(default=os.path.join(DATA_DIR, "sales.csv"))
     output_file = luigi.Parameter(default=os.path.join(OUTPUT_DIR, "sales_loaded.csv"))
@@ -24,7 +20,7 @@ class LoadSales(luigi.Task):
         sales_df.to_csv(self.output_file, index=False)
         print(f"Sales data loaded to {self.output_file}")
 
-
+# Task 2 - loading customers
 class LoadCustomers(luigi.Task):
     input_file = luigi.Parameter(default=os.path.join(DATA_DIR, "customers.json"))
     output_file = luigi.Parameter(default=os.path.join(OUTPUT_DIR, "customers_loaded.csv"))
@@ -40,10 +36,7 @@ class LoadCustomers(luigi.Task):
         print(f"Customers data loaded to {self.output_file}")
 
 
-# -----------------------------
-# Шаг 4: Объединение и валидация данных
-# -----------------------------
-
+# Task 3 - data merge amd validation
 class MergeAndValidate(luigi.Task):
     output_file = luigi.Parameter(default=os.path.join(OUTPUT_DIR, "merged_validated.csv"))
 
@@ -59,7 +52,7 @@ class MergeAndValidate(luigi.Task):
 
         merged_df = pd.merge(sales_df, customers_df, how="left", on="customer_id")
 
-        # Удаляем некорректные записи
+        # delete incorrect data
         merged_df = merged_df.dropna(subset=["customer_id", "amount"])
         merged_df = merged_df[merged_df["amount"] >= 0]
 
@@ -67,10 +60,7 @@ class MergeAndValidate(luigi.Task):
         print(f"Merged and validated data saved to {self.output_file}")
 
 
-# -----------------------------
-# Шаг 5: Трансформация и агрегация данных
-# -----------------------------
-
+# Task 4 - data transformation and aggregation
 class TransformAndAggregate(luigi.Task):
     output_file = luigi.Parameter(default=os.path.join(OUTPUT_DIR, "aggregated.csv"))
 
@@ -94,10 +84,7 @@ class TransformAndAggregate(luigi.Task):
         print(f"Aggregated data saved to {self.output_file}")
 
 
-# -----------------------------
-# Шаг 6: Генерация отчёта
-# -----------------------------
-
+# Task 5 - report generation
 class GenerateReport(luigi.Task):
     output_file = luigi.Parameter(default=os.path.join(OUTPUT_DIR, "report.txt"))
 
@@ -125,8 +112,5 @@ class GenerateReport(luigi.Task):
         print(f"Report generated at {self.output_file}")
 
 
-# -----------------------------
-# Запуск Luigi pipeline локально
-# -----------------------------
 if __name__ == "__main__":
     luigi.build([GenerateReport()], local_scheduler=True)
