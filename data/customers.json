@@ -1,0 +1,22 @@
+[
+  { "customer_id": 101, "name": "Anna", "country": "Finland" },
+  { "customer_id": 102, "name": "Maria", "country": "Germany" },
+  { "customer_id": 103, "name": "Elena", "country": "France" },
+  { "customer_id": 104, "name": "Sofia", "country": "Finland" },
+  { "customer_id": 105, "name": "Laura", "country": "Spain" },
+  { "customer_id": 106, "name": "Irena", "country": "Italy" },
+  { "customer_id": 107, "name": "Klara", "country": "Sweden" },
+  { "customer_id": 108, "name": "Paula", "country": "Portugal" },
+  { "customer_id": 109, "name": "Eva", "country": "Austria" },
+  { "customer_id": 110, "name": "Nina", "country": "Poland" },
+  { "customer_id": 111, "name": "Olga", "country": "Estonia" },
+  { "customer_id": 112, "name": "Alina", "country": "Latvia" },
+  { "customer_id": 113, "name": "Irina", "country": "Lithuania" },
+  { "customer_id": 114, "name": "Helena", "country": "Czech Republic" },
+  { "customer_id": 115, "name": "Martina", "country": "Slovakia" },
+  { "customer_id": 116, "name": "Daniela", "country": "Romania" },
+  { "customer_id": 117, "name": "Bianca", "country": "Italy" },
+  { "customer_id": 118, "name": "Clara", "country": "Spain" },
+  { "customer_id": 119, "name": "Lucia", "country": "Portugal" },
+  { "customer_id": 120, "name": "Sara", "country": "France" }
+]

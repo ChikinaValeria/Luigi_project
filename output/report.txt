@@ -1,0 +1,4 @@
+----- Sales Report -----
+Total sales amount: 6119.54
+Total unique customers: 29
+------------------------
